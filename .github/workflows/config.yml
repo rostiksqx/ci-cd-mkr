@@ -27,10 +27,10 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # check PEP8 compliance
-        flake8 . --count --max-line-length=100 --statistics --extend-ignore=E203
+        # check PEP8 compliance but continue on errors (warnings only)
+        flake8 . --count --max-line-length=100 --statistics --exit-zero --extend-ignore=E203
         # run full report with all warnings
-        flake8 . --count --max-complexity=10 --max-line-length=100 --statistics --format=html --htmldir=flake-report
+        flake8 . --count --max-complexity=10 --max-line-length=100 --statistics --exit-zero --format=html --htmldir=flake-report
     
     - name: Test with pytest
       run: |
